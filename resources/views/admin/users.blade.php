@@ -3,9 +3,11 @@
 @section('title', 'Users Page')
 
 @section('content')
-<table class="table">
+<h3 style="text-align: center;">User All Show</h3>
+<table class="table table-striped">
     <thead>
         <tr>
+            <th scope="col">No</th>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
             <th scope="col">Status</th>
@@ -47,3 +49,4 @@
         });
     }
 </script>
+

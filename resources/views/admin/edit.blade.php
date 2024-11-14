@@ -6,8 +6,7 @@
 <div class="buttons" style="width: 100vw; height: auto; text-align:center; margin-top: 20px">
     <button id="logout" style="background: #ff4848;color: white;padding: 5px 25px;font-size: 18px;cursor: pointer;border: 1px solid #2ce0f8;"
     >Log Out</button>
-    <button id="refresh_user" style="background: #1ec04e;color: white;padding: 5px 25px;font-size: 18px;cursor: pointer;border: 1px solid #2ce0f8;"
-    >Refresh User</button>
+
 </div>
 
 
@@ -22,19 +21,20 @@
         <button id="verify" data-id="" style="border:0;margin-bottom:10px;"></button>
     </div>
     <div class="user-form">
-        <form id="update_form">
-            <input type="hidden" value="" name="id" id="user_id">
+        <form id="update_form" action="{{ route('admin.users.update', $user->id) }}" method="POST">
+            @csrf
+            @method('PUT')
+
+            <input type="hidden" value="{{$user->id}}" name="id" id="id">
             <label for="name" style="color:#18a5b8;font-weight:600">Your Name: </label>
             <input style="border:1px solid #18a5b8;padding:2px;color:#18a5b8;outline:#18a5b8"
-                type="text" name="name" id="nameInput" placeholder="Enter name"><br><br>
+                type="text" name="first_name" id="first_name" placeholder="Enter name"value="{{$user->first_name}}"><br><br>
             <label for="email" style="color:#18a5b8;font-weight:600">Your Email: </label>
             <input style="border:1px solid #18a5b8;padding:2px;color:#18a5b8;outline:#18a5b8"
-                type="email" name="email" id="emailInput" placeholder="Enter email"><br><br>
+                type="email" name="email" id="email" placeholder="Enter email" value="{{$user->email}}"><br><br>
             <button type="submit" style="padding:5px 15px;font-size:16px;background:#157e8b;color:aliceblue;border:0;cursor:pointer"
             >Update Profile</button>
         </form>
     </div>
 </div>
-<div id="error" style="margin: auto; text-align:center"></div>
-
 @endsection

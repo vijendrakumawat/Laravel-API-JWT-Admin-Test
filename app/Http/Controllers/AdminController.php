@@ -41,14 +41,26 @@ class AdminController extends Controller
         }
         return view('admin.users', compact('users'));
     }
-
     public function editUser(Request $request, $id)
     {
         $user = User::findOrFail($id);
+
+        return view('admin.edit', compact('user'));
+
+    }
+
+    public function update(Request $request, $id)
+    {
+        $post = User::findOrFail($id);
+        // Validate the input data
         $validated = $request->validate([
+
             'status' => 'in:Active,Inactive',
         ]);
-        $user->update($validated);
+
+
+        $post->update($request->all());
+
         return redirect()->back()->with('success', 'User updated successfully');
     }
 
